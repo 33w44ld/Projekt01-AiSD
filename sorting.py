@@ -21,3 +21,59 @@ def selection_sort(arr):
                 min_idx = j
         data[i], data[min_idx] = data[min_idx], data[i]
     return data
+
+# -------------------------------- Shell Sort -------------------------------- #
+def shell_sort(arr):
+    data = arr[:]
+    n = len(data)
+
+    gaps = [1]
+    k = 1
+    while True:
+        gap = (4**k) + 3 * (2**(k - 1)) + 1
+        if gap >= n:
+            break
+        gaps.append(int(gap))
+        k += 1
+    
+    for gap in reversed(gaps):
+        for i in range(gap, n):
+            temp = data[i]
+            j = i
+            while j >= gap and data[j - gap] > temp:
+                data[j] = data[j - gap]
+                j -= gap
+            data[j] = temp
+
+    return data
+
+# --------------------------------- Heap Sort -------------------------------- #
+def napraw_drzewo(data, n, i):
+    najwiekszy = i
+    lewe_dziecko = 2 * i + 1
+    prawe_dziecko = 2 * i + 2
+
+    if lewe_dziecko < n and data[lewe_dziecko] > data[prawe_dziecko]:
+        najwiekszy = lewe_dziecko
+    
+    if prawe_dziecko < n and data[prawe_dziecko] > data[najwiekszy]:
+        najwiekszy = prawe_dziecko
+
+    if najwiekszy != i:
+        data[i], data[najwiekszy] = data[najwiekszy], data[i]
+        napraw_drzewo(data, n, najwiekszy)
+
+def heap_sort(arr):
+    data = arr[:]
+    n = len(data)
+
+    for i in range(n // 2 - 1, -1, -1):
+        napraw_drzewo(data, n, i)
+    
+    for i in range(n - 1, 0, -1):
+        data[i], data[0] = data[0], data[i]
+        napraw_drzewo(data, i, 0)
+    
+    return data
+
+# ------------------------- Quick Sort (Rekurencyjny) ------------------------ #
