@@ -27,7 +27,7 @@ def generate_constant(n):
     wynik = []
     random_num = random.randint(1, 10000)
     for i in range(n):
-        wynik.append(random)
+        wynik.append(random_num)
     return wynik
 
 # -------------------------- Zwraca ciąg A-kształtny ------------------------- #
