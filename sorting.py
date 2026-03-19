@@ -1,3 +1,4 @@
+import random 
 # ------------------------------ Insertion Sort ------------------------------ #
 def insertion_sort(arr):
     data = arr[:]
@@ -77,3 +78,30 @@ def heap_sort(arr):
     return data
 
 # ------------------------- Quick Sort (Rekurencyjny) ------------------------ #
+def divide_tab(data, low, high, pivot_type):
+    if pivot_type == "random":
+        rand_idx = random.randint(low, high)
+        data[low], data[rand_idx] = data[rand_idx], data[low]
+    
+    if pivot_type == "left":
+        pivot = data[low]
+        i = low + 1
+    
+    for j in range(low + 1, high + 1):
+        if data[j] < pivot:
+            data[i], data[j] = data[j], data[i]
+            i += 1
+    
+    data[low], data[i - 1] = data[i - 1], data[low]
+    return data
+
+def quicksort_check(data, low, high, pivot_type):
+    if low < high:
+        pivot_idx = divide_tab(data, low, high, pivot_type)
+        quicksort_check(data, low, high, pivot_idx - 1, pivot_type)
+        quicksort_check(data, pivot_idx + 1, high, pivot_type)
+
+def quicksort(arr, pivot_type = "left"):
+    data = arr[:]
+    quicksort_check(data, 0, len(data) - 1, pivot_type)
+    return data
