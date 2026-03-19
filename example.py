@@ -4,7 +4,7 @@ import sorting as sort  # Importujesz swój plik z algorytmami
 def sort_using_algorithm(data, algorithm):
     # Mapowanie numerów na Twoje funkcje (zgodnie z benchmark.sh)
     if algorithm == 1: return sort.insertion_sort(data)
-    if algorithm == 2: return sort.shell_sort_sedgewick(data)
+    if algorithm == 2: return sort.shell_sort(data)
     if algorithm == 3: return sort.selection_sort(data)
     if algorithm == 4: return sort.heap_sort(data)
     if algorithm == 5: return sort.quick_sort(data, "left")

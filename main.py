@@ -35,7 +35,7 @@ def menu():
     # ------------- Wywołanie odpowiedniej funkcji z pliku sorting.py ------------ #
     if a_wybor == '1': wynik = sort.insertion_sort(tablica)
     elif a_wybor == '2': wynik = sort.selection_sort(tablica)
-    elif a_wybor == '3': wynik = sort.shell_sort_sedgewick(tablica)
+    elif a_wybor == '3': wynik = sort.shell_sort(tablica)
     elif a_wybor == '4': wynik = sort.heap_sort(tablica)
     elif a_wybor == '5': wynik = sort.quick_sort(tablica, pivot_type="left")
     elif a_wybor == '6': wynik = sort.quick_sort(tablica, pivot_type="random")
