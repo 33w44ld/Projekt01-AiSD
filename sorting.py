@@ -54,7 +54,7 @@ def napraw_drzewo(data, n, i):
     lewe_dziecko = 2 * i + 1
     prawe_dziecko = 2 * i + 2
 
-    if lewe_dziecko < n and data[lewe_dziecko] > data[prawe_dziecko]:
+    if lewe_dziecko < n and data[lewe_dziecko] > data[najwiekszy]:
         najwiekszy = lewe_dziecko
     
     if prawe_dziecko < n and data[prawe_dziecko] > data[najwiekszy]:
@@ -83,9 +83,8 @@ def divide_tab(data, low, high, pivot_type):
         rand_idx = random.randint(low, high)
         data[low], data[rand_idx] = data[rand_idx], data[low]
     
-    if pivot_type == "left":
-        pivot = data[low]
-        i = low + 1
+    pivot = data[low]
+    i = low + 1
     
     for j in range(low + 1, high + 1):
         if data[j] < pivot:
@@ -93,15 +92,15 @@ def divide_tab(data, low, high, pivot_type):
             i += 1
     
     data[low], data[i - 1] = data[i - 1], data[low]
-    return data
+    return i - 1
 
 def quicksort_check(data, low, high, pivot_type):
     if low < high:
         pivot_idx = divide_tab(data, low, high, pivot_type)
-        quicksort_check(data, low, high, pivot_idx - 1, pivot_type)
+        quicksort_check(data, low, pivot_idx - 1, pivot_type)
         quicksort_check(data, pivot_idx + 1, high, pivot_type)
 
-def quicksort(arr, pivot_type = "left"):
+def quick_sort(arr, pivot_type = "left"):
     data = arr[:]
     quicksort_check(data, 0, len(data) - 1, pivot_type)
     return data
