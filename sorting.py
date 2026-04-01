@@ -49,31 +49,31 @@ def shell_sort(arr):
     return data
 
 # --------------------------------- Heap Sort -------------------------------- #
-def napraw_drzewo(data, n, i):
-    najwiekszy = i
-    lewe_dziecko = 2 * i + 1
-    prawe_dziecko = 2 * i + 2
+def heapify(data, n, i):
+    largest = i
+    left_child = 2 * i + 1
+    right_child = 2 * i + 2
 
-    if lewe_dziecko < n and data[lewe_dziecko] > data[najwiekszy]:
-        najwiekszy = lewe_dziecko
-    
-    if prawe_dziecko < n and data[prawe_dziecko] > data[najwiekszy]:
-        najwiekszy = prawe_dziecko
+    if left_child < n and data[left_child] > data[largest]:
+        largest = left_child
 
-    if najwiekszy != i:
-        data[i], data[najwiekszy] = data[najwiekszy], data[i]
-        napraw_drzewo(data, n, najwiekszy)
+    if right_child < n and data[right_child] > data[largest]:
+        largest = right_child
+
+    if largest != i:
+        data[i], data[largest] = data[largest], data[i]
+        heapify(data, n, largest)
 
 def heap_sort(arr):
     data = arr[:]
     n = len(data)
 
     for i in range(n // 2 - 1, -1, -1):
-        napraw_drzewo(data, n, i)
+        heapify(data, n, i)
     
     for i in range(n - 1, 0, -1):
         data[i], data[0] = data[0], data[i]
-        napraw_drzewo(data, i, 0)
+        heapify(data, i, 0)
     
     return data
 
